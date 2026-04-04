@@ -13,14 +13,43 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-950">
       <Header />
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Hero />
-        <Skills />
-        <About />
-        <Experience />
-        <Projects />
-        <Contact />
-      </main>
+
+      <div className="bg-slate-50">
+        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Hero />
+        </main>
+      </div>
+
+      <div className="bg-slate-100">
+        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Skills />
+        </main>
+      </div>
+
+      <div className="bg-slate-50">
+        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <About />
+        </main>
+      </div>
+
+      <div className="bg-slate-100">
+        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Experience />
+        </main>
+      </div>
+
+      <div className="bg-slate-50">
+        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Projects />
+        </main>
+      </div>
+
+      <div className="bg-slate-100">
+        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Contact />
+        </main>
+      </div>
+
       <Footer />
     </div>
   );
