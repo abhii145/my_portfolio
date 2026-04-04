@@ -9,6 +9,8 @@ import {
 import "react-vertical-timeline-component/style.min.css";
 
 import me from "./images/me.jpg";
+import { icons } from "./constant/assets";
+import { experiences } from "./constant/workExperience";
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -22,43 +24,23 @@ export default function Home() {
     { name: "Contact", href: "#contact" },
   ];
 
-  const skills = [
-    {
-      category: "Frontend",
-      items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vue.js"],
-    },
-    {
-      category: "Backend",
-      items: ["Node.js", "Python", "PostgreSQL", "MongoDB", "Express"],
-    },
-    { category: "Tools", items: ["Git", "Docker", "AWS", "Vercel", "Figma"] },
-  ];
-
-  const experience = [
-    {
-      company: "Tech Company Inc",
-      icon: "🏢",
-      role: "Senior Full Stack Developer",
-      period: "2022 - Present",
-      description:
-        "Led development of scalable web applications, mentored junior developers, and implemented CI/CD pipelines.",
-    },
-    {
-      company: "Digital Solutions Ltd",
-      icon: "💻",
-      role: "Full Stack Developer",
-      period: "2020 - 2022",
-      description:
-        "Developed responsive web applications using React and Node.js, improved performance by 40%.",
-    },
-    {
-      company: "StartUp Hub",
-      icon: "🚀",
-      role: "Junior Developer",
-      period: "2019 - 2020",
-      description:
-        "Built features for e-commerce platform, collaborated with design and product teams.",
-    },
+  const iconsList = [
+    { name: "HTML", src: icons.htmlIcon },
+    { name: "CSS", src: icons.cssIcon },
+    { name: "Tailwind CSS", src: icons.tailwindIcon },
+    { name: "Storybook", src: icons.storybook },
+    { name: "JavaScript", src: icons.jsIcon },
+    { name: "TypeScript", src: icons.tsIcon },
+    { name: "React", src: icons.reactIcon },
+    { name: "Next.js", src: icons.nextjsIcon },
+    { name: "Redux", src: icons.reduxIcon },
+    { name: "React Query", src: icons.reactqueryIcon },
+    { name: "Node", src: icons.node },
+    { name: "MongoDB", src: icons.mongoDBIcon },
+    { name: "Jest", src: icons.jest },
+    { name: "Playwright", src: icons.playwright },
+    { name: "Docker", src: icons.docker },
+    { name: "Git", src: icons.gitIcon },
   ];
 
   const projects = [
@@ -247,30 +229,34 @@ export default function Home() {
 
         {/* Skills Section */}
         <section id="skills" className="py-20 sm:py-32 scroll-mt-20">
-          <h2 className="text-4xl sm:text-5xl font-bold mb-12 text-left">
-            Technical Skills
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {skills.map((skillGroup, idx) => (
-              <div
-                key={idx}
-                className="p-8 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:shadow-lg transition-shadow"
-              >
-                <h3 className="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">
-                  {skillGroup.category}
-                </h3>
-                <div className="flex flex-wrap gap-3">
-                  {skillGroup.items.map((skill, i) => (
-                    <span
-                      key={i}
-                      className="px-4 py-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-medium"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+          <div className="py-1">
+            <div className="container mx-auto">
+              <h2 className="text-3xl font-semibold mb-6 text-blue-600">
+                Tech Skills
+              </h2>
+              <div className="flex flex-wrap justify-center gap-6">
+                {iconsList.map((icon) => (
+                  <div
+                    key={icon.name}
+                    className="w-28 h-28 flex items-center justify-center bg-white dark:bg-slate-900 rounded-full shadow-lg transition-shadow duration-300 hover:shadow-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:scale-105"
+                  >
+                    <Image
+                      src={
+                        icon.src &&
+                        typeof icon.src === "object" &&
+                        "src" in icon.src
+                          ? icon.src.src
+                          : icon.src
+                      }
+                      alt={icon.name}
+                      width={80}
+                      height={80}
+                      className="w-20 h-20"
+                    />
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </section>
 
@@ -281,7 +267,7 @@ export default function Home() {
           </h2>
           <div className="max-w-4xl mx-auto">
             <VerticalTimeline>
-              {experience.map((exp, idx) => (
+              {experiences.map((exp, idx) => (
                 <VerticalTimelineElement
                   key={idx}
                   className="vertical-timeline-element--work"
@@ -296,7 +282,7 @@ export default function Home() {
                   contentArrowStyle={{
                     borderRight: "7px solid rgb(248 250 252)",
                   }}
-                  date={exp.period}
+                  date={exp.date}
                   iconStyle={{
                     background:
                       "linear-gradient(to bottom right, #2563eb, #9333ea)",
@@ -306,18 +292,36 @@ export default function Home() {
                     justifyContent: "center",
                     fontSize: "1.5rem",
                   }}
-                  icon={<div>{exp.icon}</div>}
+                  icon={
+                    <div className="flex items-center justify-center w-full h-full">
+                      <Image
+                        src={exp.icon}
+                        alt={`${exp.company_name} logo`}
+                        width={28}
+                        height={28}
+                        className="object-contain"
+                      />
+                    </div>
+                  }
                 >
                   <div className="p-2">
                     <h3 className="text-2xl sm:text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
-                      {exp.role}
+                      {exp.title}
                     </h3>
                     <h4 className="text-lg font-semibold text-slate-700 dark:text-slate-300 mb-4 flex items-center gap-2">
-                      <span>{exp.icon}</span>
-                      {exp.company}
+                      <span className="w-6 h-6">
+                        <Image
+                          src={exp.icon}
+                          alt={`${exp.company_name} logo`}
+                          width={24}
+                          height={24}
+                          className="object-contain"
+                        />
+                      </span>
+                      {exp.company_name}
                     </h4>
                     <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                      {exp.description}
+                      {exp.points}
                     </p>
                   </div>
                 </VerticalTimelineElement>
