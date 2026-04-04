@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
-
+body {
+  background: #f7f7f4;
+  color: #111827;
+}
 
 .hero-image img {
   margin-top: 20px;
