@@ -25,9 +25,7 @@ export default function Skills() {
     <section id="skills" className="py-20 sm:py-32 scroll-mt-20">
       <div className="py-1">
         <div className="container mx-auto">
-          <h2 className="text-3xl font-semibold mb-6 text-blue-600">
-            Tech Skills
-          </h2>
+          <h2 className="text-4xl sm:text-5xl font-bold mb-6">Tech Skills</h2>
           <div className="flex flex-wrap justify-center gap-6">
             {iconsList.map((icon) => (
               <div

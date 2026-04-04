@@ -1,3 +1,6 @@
+import Image from "next/image";
+import workingMacImage from "../images/working_mac.png";
+
 export default function About() {
   return (
     <section id="about" className="py-20 sm:py-32 scroll-mt-20">
@@ -5,32 +8,31 @@ export default function About() {
         <div>
           <h2 className="text-4xl sm:text-5xl font-bold mb-6">About Me</h2>
           <p className="text-lg text-slate-700 mb-4 leading-relaxed">
-            I&apos;m a full-stack developer with 5+ years of experience building
-            web applications. I&apos;m passionate about creating elegant
-            solutions to complex problems.
+            👋 Hey there! I&apos;m Abhishek Yadav, a passionate Full Stack
+            Developer with 6 years of hands-on experience in crafting
+            captivating web experiences.
           </p>
-          <p className="text-lg text-slate-700 mb-6 leading-relaxed">
-            When I&apos;m not coding, you can find me exploring new
-            technologies, contributing to open source, or sharing knowledge with
-            the community.
+          <p className="text-lg text-slate-700 mb-4 leading-relaxed">
+            🚀 My journey began with HTML and CSS, and over the years, I&apos;ve
+            honed my skills in JavaScript and TypeScript, using them to bring
+            ideas to life and create dynamic user interfaces.
           </p>
-          <div className="flex gap-6">
-            <div>
-              <div className="text-3xl font-bold text-blue-600">50+</div>
-              <p className="text-slate-700">Projects Completed</p>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-purple-600">100+</div>
-              <p className="text-slate-700">Happy Clients</p>
-            </div>
-          </div>
+          <p className="text-lg text-slate-700 mb-4 leading-relaxed">
+            ⚛️ I thrive in the world of React.js and Next.js, utilizing these
+            powerful tools to build responsive, performant, and user-friendly
+            applications that leave a lasting impression.
+          </p>
         </div>
-        <div className="hidden md:block">
-          <div className="bg-linear-to-br from-blue-600 to-purple-600 rounded-2xl h-96 flex items-center justify-center">
-            <div className="text-white text-center">
-              <div className="text-6xl mb-4">👨‍💻</div>
-              <p className="text-xl font-semibold">Web Developer</p>
-            </div>
+        <div>
+          <div className="relative h-96 rounded-2xl overflow-hidden">
+            <Image
+              src={workingMacImage}
+              alt="Working on a Mac"
+              fill
+              className="object-contain"
+              sizes="(min-width: 768px) 50vw, 100vw"
+              priority
+            />
           </div>
         </div>
       </div>
