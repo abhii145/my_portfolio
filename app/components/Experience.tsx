@@ -1,77 +1,168 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
-import Image from "next/image";
 import { experiences } from "../constant/workExperience";
+import { education } from "../constant/education";
+
+const highlightKeywords = (text: string, keywords: string[]) => {
+  const regex = new RegExp(`\\b(${keywords.join("|")})\\b`, "gi");
+  return text.replace(
+    regex,
+    (match) =>
+      `<span style="text-decoration: underline; color: #20a7db">${match}</span>`,
+  );
+};
 
 export default function Experience() {
+  const [activeTab, setActiveTab] = useState("work");
+
+  const keywordsToHighlight = ["Banking Domain", "Ecommerce site", "map-based"];
+
   return (
     <section id="experience" className="py-20 sm:py-32 scroll-mt-20">
-      <h2 className="text-4xl sm:text-5xl font-bold mb-16 text-left">
-        Experience
-      </h2>
       <div className="max-w-4xl mx-auto">
-        <VerticalTimeline>
-          {experiences.map((exp, idx) => (
-            <VerticalTimelineElement
-              key={idx}
-              className="vertical-timeline-element--work"
-              contentStyle={{
-                background: "rgb(248 250 252)",
-                color: "#0f172a",
-                border: "1px solid rgb(226 232 240)",
-                borderRadius: "0.75rem",
-                boxShadow:
-                  "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
-              }}
-              contentArrowStyle={{
-                borderRight: "7px solid rgb(248 250 252)",
-              }}
-              date={exp.date}
-              iconStyle={{
-                background:
-                  "linear-gradient(to bottom right, #2563eb, #9333ea)",
-                color: "#fff",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "1.5rem",
-              }}
-              icon={
-                <div className="flex items-center justify-center w-full h-full">
+        <div className="flex justify-between gap-6 mb-12">
+          <button
+            className={`text-xl font-semibold pb-2 transition-colors ${
+              activeTab === "work"
+                ? "text-blue-600 border-b-2 border-blue-600"
+                : "text-slate-600 hover:text-slate-700"
+            }`}
+            onClick={() => setActiveTab("work")}
+          >
+            Work Experience
+          </button>
+          <button
+            className={`text-xl font-semibold pb-2 transition-colors ${
+              activeTab === "education"
+                ? "text-blue-600 border-b-2 border-blue-600"
+                : "text-slate-600 hover:text-slate-700"
+            }`}
+            onClick={() => setActiveTab("education")}
+          >
+            Education
+          </button>
+        </div>
+
+        {activeTab === "work" && (
+          <VerticalTimeline animate>
+            {experiences.map((experience, index) => (
+              <VerticalTimelineElement
+                key={index}
+                className="vertical-timeline-element"
+                contentStyle={{
+                  background: experience.iconBg,
+                  color: "#000",
+                }}
+                contentArrowStyle={{
+                  borderRight: `7px solid ${experience.iconBg}`,
+                }}
+                date={experience.date}
+                iconStyle={{
+                  background: experience.iconBg,
+                  color: "#fff",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: "50%",
+                  width: "60px",
+                  height: "60px",
+                }}
+                icon={
                   <Image
-                    src={exp.icon}
-                    alt={`${exp.company_name} logo`}
-                    width={28}
-                    height={28}
+                    src={experience.icon}
+                    alt="Company Icon"
+                    width={40}
+                    height={40}
                     className="object-contain"
                   />
-                </div>
-              }
-            >
-              <div className="p-2">
-                <h3 className="text-2xl sm:text-3xl font-bold text-blue-600 mb-2">
-                  {exp.title}
-                </h3>
-                <h4 className="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
-                  <span className="w-6 h-6">
-                    <Image
-                      src={exp.icon}
-                      alt={`${exp.company_name} logo`}
-                      width={24}
-                      height={24}
-                      className="object-contain"
-                    />
+                }
+              >
+                <h4 className="vertical-timeline-element-subtitle font-bold">
+                  {experience.company_name} <span className="mr-1">|</span>
+                  <span className="vertical-timeline-element-title font-light">
+                    {experience.title}
                   </span>
-                  {exp.company_name}
                 </h4>
-                <p className="text-slate-700 leading-relaxed">{exp.points}</p>
-              </div>
-            </VerticalTimelineElement>
-          ))}
-        </VerticalTimeline>
+
+                <ul className="list-disc pl-5 mt-2">
+                  {experience.points.map((point, idx) => (
+                    <li
+                      key={idx}
+                      className="text-slate-700 leading-relaxed"
+                      dangerouslySetInnerHTML={{
+                        __html: highlightKeywords(point, keywordsToHighlight),
+                      }}
+                    />
+                  ))}
+                </ul>
+              </VerticalTimelineElement>
+            ))}
+          </VerticalTimeline>
+        )}
+
+        {activeTab === "education" && (
+          <VerticalTimeline animate>
+            {education.map((edu, index) => (
+              <VerticalTimelineElement
+                key={index}
+                className="vertical-timeline-element"
+                contentStyle={{
+                  background: edu.iconBg,
+                  color: "#000",
+                }}
+                contentArrowStyle={{
+                  borderRight: `7px solid ${edu.iconBg}`,
+                }}
+                date={edu.date}
+                iconStyle={{
+                  background: edu.iconBg,
+                  color: "#fff",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderRadius: "50%",
+                  width: "60px",
+                  height: "60px",
+                }}
+                icon={
+                  <Image
+                    src={edu.icon}
+                    alt="Education Icon"
+                    width={40}
+                    height={40}
+                    className="object-contain"
+                  />
+                }
+              >
+                <h4 className="vertical-timeline-element-subtitle font-bold">
+                  {edu.company_name} <span className="ml-3">|</span>
+                  <span className="vertical-timeline-element-title font-light ml-3">
+                    {edu.title}
+                  </span>
+                </h4>
+
+                <ul className="list-disc pl-5 mt-2">
+                  {edu.points.map((point, idx) => (
+                    <li
+                      key={idx}
+                      className="text-slate-700 leading-relaxed"
+                      dangerouslySetInnerHTML={{
+                        __html: highlightKeywords(point, keywordsToHighlight),
+                      }}
+                    />
+                  ))}
+                </ul>
+              </VerticalTimelineElement>
+            ))}
+          </VerticalTimeline>
+        )}
       </div>
     </section>
   );
