@@ -1,65 +1,439 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
+import {
+  VerticalTimeline,
+  VerticalTimelineElement,
+} from "react-vertical-timeline-component";
+import "react-vertical-timeline-component/style.min.css";
+
+import me from "./images/me.jpg";
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const navLinks = [
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Skills", href: "#skills" },
+    { name: "Experience", href: "#experience" },
+    { name: "Projects", href: "#projects" },
+    { name: "Contact", href: "#contact" },
+  ];
+
+  const skills = [
+    {
+      category: "Frontend",
+      items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vue.js"],
+    },
+    {
+      category: "Backend",
+      items: ["Node.js", "Python", "PostgreSQL", "MongoDB", "Express"],
+    },
+    { category: "Tools", items: ["Git", "Docker", "AWS", "Vercel", "Figma"] },
+  ];
+
+  const experience = [
+    {
+      company: "Tech Company Inc",
+      icon: "🏢",
+      role: "Senior Full Stack Developer",
+      period: "2022 - Present",
+      description:
+        "Led development of scalable web applications, mentored junior developers, and implemented CI/CD pipelines.",
+    },
+    {
+      company: "Digital Solutions Ltd",
+      icon: "💻",
+      role: "Full Stack Developer",
+      period: "2020 - 2022",
+      description:
+        "Developed responsive web applications using React and Node.js, improved performance by 40%.",
+    },
+    {
+      company: "StartUp Hub",
+      icon: "🚀",
+      role: "Junior Developer",
+      period: "2019 - 2020",
+      description:
+        "Built features for e-commerce platform, collaborated with design and product teams.",
+    },
+  ];
+
+  const projects = [
+    {
+      title: "E-Commerce Platform",
+      description:
+        "Full-stack e-commerce solution with payments, inventory management, and admin dashboard.",
+      tech: ["Next.js", "TypeScript", "Stripe", "PostgreSQL"],
+      link: "#",
+    },
+    {
+      title: "Task Management App",
+      description:
+        "Real-time collaborative task management tool with drag-and-drop functionality.",
+      tech: ["React", "Node.js", "Socket.io", "MongoDB"],
+      link: "#",
+    },
+    {
+      title: "Weather Dashboard",
+      description:
+        "Interactive weather application with location-based forecasts and history tracking.",
+      tech: ["React", "APIs", "Tailwind CSS", "Next.js"],
+      link: "#",
+    },
+    {
+      title: "Blog Platform",
+      description:
+        "Content management system with markdown support and SEO optimization.",
+      tech: ["Next.js", "MDX", "Vercel", "PostgreSQL"],
+      link: "#",
+    },
+  ];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100">
+      {/* Header */}
+      <header className="sticky top-0 z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+          <div className="text-2xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Portfolio
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-sm font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden p-2"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </nav>
+
+        {/* Mobile Navigation */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-4 py-4">
+            <div className="flex flex-col gap-4">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="text-sm font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </header>
+
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Hero Section */}
+        <section
+          id="home"
+          className="py-20 sm:py-32 flex flex-col md:flex-row justify-center items-center min-h-[calc(100vh-80px)] gap-12"
+        >
+          <div className="flex-1 space-y-6">
+            <div className="inline-block">
+              <span className="px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-semibold">
+                Welcome to my portfolio
+              </span>
+            </div>
+            <h1 className="text-5xl sm:text-7xl font-bold tracking-tight">
+              Hi, I&apos;m a{" "}
+              <span className="bg-linear-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                Developer
+              </span>
+            </h1>
+            <p className="text-xl sm:text-2xl text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed">
+              I craft beautiful and functional web applications. With expertise
+              in modern web technologies, I turn ideas into reality.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <a
+                href="#projects"
+                className="px-8 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors text-center"
+              >
+                View My Work
+              </a>
+              <a
+                href="#contact"
+                className="px-8 py-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-900 font-semibold transition-colors text-center"
+              >
+                Get In Touch
+              </a>
+            </div>
+          </div>
+          <div className="flex-1 flex justify-center">
+            <div className="hero-image">
+              <Image
+                src={me}
+                alt="Profile photo"
+                width={370}
+                height={370}
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* About Section */}
+        <section id="about" className="py-20 sm:py-32 scroll-mt-20">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl sm:text-5xl font-bold mb-6">About Me</h2>
+              <p className="text-lg text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                I&apos;m a full-stack developer with 5+ years of experience
+                building web applications. I&apos;m passionate about creating
+                elegant solutions to complex problems.
+              </p>
+              <p className="text-lg text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                When I&apos;m not coding, you can find me exploring new
+                technologies, contributing to open source, or sharing knowledge
+                with the community.
+              </p>
+              <div className="flex gap-6">
+                <div>
+                  <div className="text-3xl font-bold text-blue-600">50+</div>
+                  <p className="text-slate-600 dark:text-slate-400">
+                    Projects Completed
+                  </p>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-purple-600">100+</div>
+                  <p className="text-slate-600 dark:text-slate-400">
+                    Happy Clients
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="hidden md:block">
+              <div className="bg-linear-to-br from-blue-600 to-purple-600 rounded-2xl h-96 flex items-center justify-center">
+                <div className="text-white text-center">
+                  <div className="text-6xl mb-4">👨‍💻</div>
+                  <p className="text-xl font-semibold">Web Developer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Skills Section */}
+        <section id="skills" className="py-20 sm:py-32 scroll-mt-20">
+          <h2 className="text-4xl sm:text-5xl font-bold mb-12 text-left">
+            Technical Skills
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {skills.map((skillGroup, idx) => (
+              <div
+                key={idx}
+                className="p-8 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:shadow-lg transition-shadow"
+              >
+                <h3 className="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">
+                  {skillGroup.category}
+                </h3>
+                <div className="flex flex-wrap gap-3">
+                  {skillGroup.items.map((skill, i) => (
+                    <span
+                      key={i}
+                      className="px-4 py-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-medium"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Experience Section */}
+        <section id="experience" className="py-20 sm:py-32 scroll-mt-20">
+          <h2 className="text-4xl sm:text-5xl font-bold mb-16 text-left">
+            Experience
+          </h2>
+          <div className="max-w-4xl mx-auto">
+            <VerticalTimeline>
+              {experience.map((exp, idx) => (
+                <VerticalTimelineElement
+                  key={idx}
+                  className="vertical-timeline-element--work"
+                  contentStyle={{
+                    background: "rgb(248 250 252)",
+                    color: "#0f172a",
+                    border: "1px solid rgb(226 232 240)",
+                    borderRadius: "0.75rem",
+                    boxShadow:
+                      "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+                  }}
+                  contentArrowStyle={{
+                    borderRight: "7px solid rgb(248 250 252)",
+                  }}
+                  date={exp.period}
+                  iconStyle={{
+                    background:
+                      "linear-gradient(to bottom right, #2563eb, #9333ea)",
+                    color: "#fff",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "1.5rem",
+                  }}
+                  icon={<div>{exp.icon}</div>}
+                >
+                  <div className="p-2">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+                      {exp.role}
+                    </h3>
+                    <h4 className="text-lg font-semibold text-slate-700 dark:text-slate-300 mb-4 flex items-center gap-2">
+                      <span>{exp.icon}</span>
+                      {exp.company}
+                    </h4>
+                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      {exp.description}
+                    </p>
+                  </div>
+                </VerticalTimelineElement>
+              ))}
+            </VerticalTimeline>
+          </div>
+        </section>
+
+        {/* Projects Section */}
+        <section id="projects" className="py-20 sm:py-32 scroll-mt-20">
+          <h2 className="text-4xl sm:text-5xl font-bold mb-12 text-left">
+            Featured Projects
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {projects.map((project, idx) => (
+              <div
+                key={idx}
+                className="group rounded-xl overflow-hidden bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-shadow"
+              >
+                <div className="h-48 bg-linear-to-br from-blue-500 to-purple-500 flex items-center justify-center">
+                  <div className="text-white text-6xl">💼</div>
+                </div>
+                <div className="p-8">
+                  <h3 className="text-2xl font-bold mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tech.map((tech, i) => (
+                      <span
+                        key={i}
+                        className="px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-medium"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <a
+                    href={project.link}
+                    className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold hover:gap-3 transition-all"
+                  >
+                    View Project →
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact" className="py-20 sm:py-32 scroll-mt-20">
+          <div className="max-w-3xl mx-auto text-left">
+            <h2 className="text-4xl sm:text-5xl font-bold mb-6">
+              Let&apos;s Work Together
+            </h2>
+            <p className="text-xl text-slate-600 dark:text-slate-400 mb-12">
+              I&apos;m interested in freelance opportunities and exciting
+              projects. Feel free to reach out!
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="mailto:your.email@example.com"
+                className="px-8 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors"
+              >
+                Send Me An Email
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-900 font-semibold transition-colors"
+              >
+                LinkedIn
+              </a>
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-900 font-semibold transition-colors"
+              >
+                GitHub
+              </a>
+            </div>
+          </div>
+        </section>
       </main>
+
+      {/* Footer */}
+      <footer className="bg-slate-100 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 mt-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center text-slate-600 dark:text-slate-400">
+          <p className="mb-4">© 2024 My Portfolio. All rights reserved.</p>
+          <div className="flex justify-center gap-6 mb-4">
+            <a
+              href="#"
+              className="hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
+            >
+              Twitter
+            </a>
+            <a
+              href="#"
+              className="hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="#"
+              className="hover:text-slate-900 dark:hover:text-slate-100 transition-colors"
+            >
+              GitHub
+            </a>
+          </div>
+          <p className="text-sm">Designed & Built with ❤️</p>
+        </div>
+      </footer>
     </div>
   );
 }
