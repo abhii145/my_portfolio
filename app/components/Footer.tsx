@@ -1,21 +1,45 @@
-export default function Footer() {
+
+const Footer = () => {
   return (
-    <footer className="bg-slate-100 border-t border-slate-200 mt-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center text-slate-700">
-        <p className="mb-4">© 2024 My Portfolio. All rights reserved.</p>
-        <div className="flex justify-center gap-6 mb-4">
-          <a href="#" className="hover:text-slate-900 transition-colors">
-            Twitter
-          </a>
-          <a href="#" className="hover:text-slate-900 transition-colors">
-            LinkedIn
-          </a>
-          <a href="#" className="hover:text-slate-900 transition-colors">
+    <footer className="bg-slate-950 text-white py-6">
+      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-4 sm:px-6 lg:px-8">
+        <div className="mb-4 md:mb-0">
+          <p className="text-sm">
+            Copyright &copy; {new Date().getFullYear()} All Rights Reserved
+          </p>
+        </div>
+        <div className="flex space-x-4">
+          <a
+            href="https://github.com/abhii145"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white text-sm transition-colors duration-300 hover:text-gray-500"
+            aria-label="GitHub"
+          >
             GitHub
           </a>
+          <a
+            href="https://www.linkedin.com/in/abhiy145/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white text-sm transition-colors duration-300 hover:text-blue-500"
+            aria-label="LinkedIn"
+          >
+           Linkedin
+          </a>
+          <a
+            href="https://www.instagram.com/abhii145/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white text-sm transition-colors duration-300 hover:text-orange-500"
+            aria-label="Instagram"
+          >
+            Instagram
+          </a>
         </div>
-        <p className="text-sm">Designed & Built with ❤️</p>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

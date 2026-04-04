@@ -6,7 +6,7 @@ export default function About() {
     <section id="about" className="py-20 sm:py-32 scroll-mt-20">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <div>
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6">About Me</h2>
+          <h2 className="text-3xl font-semibold mb-3 text-pblue">About Me</h2>
           <p className="text-lg text-slate-700 mb-4 leading-relaxed">
             👋 Hey there! I&apos;m Abhishek Yadav, a passionate Full Stack
             Developer with 6 years of hands-on experience in crafting

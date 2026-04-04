@@ -41,8 +41,7 @@ export default function Projects() {
                     src={project.image}
                     alt={`${project.title} screenshot`}
                     fill
-                    className="object-cover"
-                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-contain"
                   />
                 </div>
 
