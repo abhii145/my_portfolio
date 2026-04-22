@@ -59,4 +59,4 @@ export const experiences = [
       "Collaborated with cross-functional teams, including backend developers and QA engineers, to ensure seamless integration of frontend and backend components.",
     ],
   },
-];
+]
