@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -8,12 +10,13 @@ export default function Projects() {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 700,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 4500,
     arrows: true,
+    adaptiveHeight: true,
     responsive: [
       {
         breakpoint: 768,
@@ -25,100 +28,110 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-20 sm:py-32 scroll-mt-20">
-      <h2 className="text-3xl font-semibold mb-3 text-pblue">Project</h2>
-      <h2 className="text-sm mb-6 text-blue">
-        Each project is a unique piece of development 🧩
-      </h2>
-      <div className="max-w-6xl mx-auto">
+    <section
+      id="projects"
+      className="section-shell scroll-mt-24 rounded-[36px] px-6 py-14 sm:px-10 lg:px-12"
+    >
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div className="max-w-2xl">
+          <p className="section-kicker text-xs font-semibold">Projects</p>
+          <h2 className="section-title mt-3 font-[family:var(--font-space-grotesk)] text-3xl font-bold sm:text-4xl">
+            A few builds that show how I approach product UI and engineering.
+          </h2>
+        </div>
+        <p className="section-copy max-w-xl text-sm leading-7 sm:text-base">
+          These projects highlight full stack execution, strong frontend
+          structure, and an eye for interfaces that feel refined instead of
+          generic.
+        </p>
+      </div>
+
+      <div className="project-slider mt-10">
         <Slider {...settings}>
           {projects.map((project, idx) => (
-            <div key={idx} className="px-4">
-              <div className="grid md:grid-cols-2 gap-8 items-center bg-white rounded-2xl shadow-lg overflow-hidden">
-                {/* Left side - Project Screenshot */}
-                <div className="relative h-80 md:h-96">
-                  <Image
-                    src={project.image}
-                    alt={`${project.title} screenshot`}
-                    fill
-                    className="object-contain"
-                  />
-                </div>
+            <div key={idx} className="px-1 pb-14">
+              <article className="section-panel overflow-hidden rounded-[32px] border border-white/10">
+                <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
+                  <div className="relative min-h-[280px] bg-gradient-to-br from-sky-400/12 via-slate-950 to-orange-400/12 p-5 sm:min-h-[360px] sm:p-8">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_55%)]" />
+                    <div className="relative h-full overflow-hidden rounded-[24px] border border-white/10 bg-slate-950/80">
+                      <Image
+                        src={project.image}
+                        alt={`${project.title} screenshot`}
+                        fill
+                        className="object-cover object-top"
+                      />
+                    </div>
+                  </div>
 
-                {/* Right side - Project Details */}
-                <div className="p-8">
-                  <h3 className="text-2xl md:text-3xl font-bold mb-4 text-slate-800">
-                    {project.title}
-                  </h3>
-                  <p className="text-slate-700 mb-6 leading-relaxed">
-                    {project.description}
-                  </p>
+                  <div className="flex flex-col justify-between p-6 sm:p-8 lg:p-10">
+                    <div>
+                      <div className="flex flex-wrap items-center gap-3">
+                        <span className="rounded-full border border-sky-300/25 bg-sky-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-sky-200">
+                          Featured project
+                        </span>
+                        <span className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-300">
+                          {String(idx + 1).padStart(2, "0")}
+                        </span>
+                      </div>
+                      <h3 className="mt-5 font-[family:var(--font-space-grotesk)] text-3xl font-bold text-white">
+                        {project.title}
+                      </h3>
+                      <p className="mt-4 text-sm leading-7 text-slate-300 sm:text-base">
+                        {project.description}
+                      </p>
+                    </div>
 
-                  {/* Tech Stack */}
-                  <div className="flex flex-wrap gap-3 mb-8">
-                    {project.technology.map((techKey, i) => {
-                      const iconSrc = (technologyIcons as any)[techKey];
-                      return (
-                        <div
-                          key={i}
-                          className="w-12 h-12 flex items-center justify-center bg-slate-100 rounded-lg hover:bg-slate-200 transition-colors"
-                          title={techKey
-                            .replace("Icon", "")
-                            .replace("icon", "")}
+                    <div className="mt-8">
+                      <div className="flex flex-wrap gap-3">
+                        {project.technology.map((techKey) => {
+                          const iconSrc =
+                            technologyIcons[
+                              techKey as keyof typeof technologyIcons
+                            ];
+
+                          return (
+                            <div
+                              key={techKey}
+                              className="flex h-12 w-12 items-center justify-center rounded-2xl border border-slate-200/80 bg-white p-2 shadow-[0_10px_24px_rgba(15,23,42,0.16)]"
+                              title={techKey
+                                .replace("Icon", "")
+                                .replace("icon", "")}
+                            >
+                              <Image
+                                src={iconSrc}
+                                alt={techKey}
+                                width={26}
+                                height={26}
+                                className="object-contain"
+                              />
+                            </div>
+                          );
+                        })}
+                      </div>
+
+                      <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                        <a
+                          href={project.demoLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 font-semibold text-slate-950 transition-transform duration-300 hover:-translate-y-0.5"
                         >
-                          <Image
-                            src={iconSrc}
-                            alt={techKey}
-                            width={32}
-                            height={32}
-                            className="object-contain"
-                          />
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <a
-                      href={project.githubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 px-6 py-3 rounded-lg border-2 border-slate-300 hover:bg-slate-50 font-semibold transition-colors"
-                    >
-                      <svg
-                        className="w-5 h-5"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                      </svg>
-                      GitHub
-                    </a>
-                    <a
-                      href={project.demoLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors"
-                    >
-                      Live Demo
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                        />
-                      </svg>
-                    </a>
+                          Live demo
+                        </a>
+                        <a
+                          href={project.githubLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center rounded-full border border-white/12 bg-white/5 px-6 py-3 font-semibold text-white transition-colors duration-300 hover:bg-white/10"
+                        >
+                          View code
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </article>
             </div>
           ))}
         </Slider>

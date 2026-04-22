@@ -15,29 +15,31 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 bg-slate-50/90 backdrop-blur-md border-b border-slate-200">
-      <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-        <div className="text-2xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-          Portfolio
-        </div>
+    <header className="sticky top-0 z-40 border-b border-white/10 bg-slate-950/55 backdrop-blur-xl">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <a
+          href="#home"
+          className="font-[family:var(--font-space-grotesk)] text-lg font-bold tracking-[0.24em] text-slate-100 uppercase"
+        >
+          Abhishek
+        </a>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex gap-8">
+        <div className="hidden items-center gap-2 rounded-full border border-white/10 bg-white/5 p-2 md:flex">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium hover:text-blue-600 transition-colors"
+              className="rounded-full px-4 py-2 text-sm font-medium text-slate-300 transition-all duration-300 hover:bg-white/10 hover:text-white"
             >
               {link.name}
             </a>
           ))}
         </div>
 
-        {/* Mobile Menu Button */}
         <button
-          className="md:hidden p-2"
+          className="rounded-full border border-white/10 bg-white/5 p-2 text-slate-100 md:hidden"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle navigation menu"
         >
           <svg
             className="w-6 h-6"
@@ -55,15 +57,14 @@ export default function Header() {
         </button>
       </nav>
 
-      {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-slate-50 border-t border-slate-200 px-4 py-4">
-          <div className="flex flex-col gap-4">
+        <div className="border-t border-white/10 bg-slate-950/95 px-4 py-4 md:hidden">
+          <div className="mx-auto flex max-w-7xl flex-col gap-2">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium hover:text-blue-600 transition-colors"
+                className="rounded-2xl border border-white/8 bg-white/5 px-4 py-3 text-sm font-medium text-slate-200 transition-colors hover:bg-white/10 hover:text-white"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.name}

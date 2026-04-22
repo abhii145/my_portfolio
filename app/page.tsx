@@ -11,45 +11,16 @@ import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-950">
+    <div className="min-h-screen text-slate-50">
       <Header />
-
-      <div className="bg-slate-50">
-        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Hero />
-        </main>
-      </div>
-
-      <div className="bg-slate-100">
-        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Skills />
-        </main>
-      </div>
-
-      <div className="bg-slate-50">
-        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <About />
-        </main>
-      </div>
-
-      <div className="bg-slate-100">
-        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Experience />
-        </main>
-      </div>
-
-      <div className="bg-slate-50">
-        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Projects />
-        </main>
-      </div>
-
-      <div className="bg-slate-100">
-        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Contact />
-        </main>
-      </div>
-
+      <main className="relative mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 pb-12 pt-6 sm:px-6 lg:px-8 lg:gap-8 lg:pb-16">
+        <Hero />
+        <Skills />
+        <About />
+        <Experience />
+        <Projects />
+        <Contact />
+      </main>
       <Footer />
     </div>
   );
