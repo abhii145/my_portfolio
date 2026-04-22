@@ -21,7 +21,7 @@ export default function Header() {
           href="#home"
           className="font-[family:var(--font-space-grotesk)] text-lg font-bold tracking-[0.24em] text-slate-100 uppercase"
         >
-          Abhishek
+          Abhishek Yadav
         </a>
 
         <div className="hidden items-center gap-2 rounded-full border border-white/10 bg-white/5 p-2 md:flex">
