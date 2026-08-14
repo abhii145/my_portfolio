@@ -5,7 +5,7 @@ import { Analytics } from "@vercel/analytics/next";
 export const metadata: Metadata = {
   title: "Abhishek Yadav | Full Stack Developer",
   description:
-    "Portfolio of Abhishek Yadav, a passionate Full Stack Developer with 6 years of experience in building robust web applications using the MERN stack and Next.js.",
+    "Portfolio of Abhishek Yadav, a passionate Full Stack Developer with 7 years of experience in building robust web applications using the MERN stack and Next.js.",
   icons: {
     icon: "/favicon.svg",
   },
