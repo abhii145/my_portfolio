@@ -18,7 +18,7 @@ export default function Hero() {
             Building sleek, scalable products with sharp frontend craft.
           </h1>
           <p className="section-copy mt-6 max-w-xl text-base leading-8 sm:text-lg">
-            I&apos;m Abhishek Yadav, a full stack developer with 6 years of
+            I&apos;m Abhishek Yadav, a full stack developer with 7 years of
             experience shipping modern web apps across fintech, ecommerce, and
             map-based platforms using React, Next.js, TypeScript, Node.js, and
             the MERN stack.
