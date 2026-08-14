@@ -34,7 +34,7 @@ export default function About() {
             components, testing, and performance-focused implementation.
           </p>
           <p className="section-copy mt-4 text-base leading-8 sm:text-lg">
-            Over the last 6 years, I&apos;ve worked across banking, ecommerce,
+            Over the last 7 years, I&apos;ve worked across banking, ecommerce,
             event platforms, and location-based products. That range has helped
             me balance business needs, speed, and code quality without losing
             the details that make a UI feel premium.
